@@ -12,6 +12,8 @@
 		8C6086B6237A848000108538 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6086B4237A848000108538 /* Main.storyboard */; };
 		8C6086B8237A848200108538 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C6086B7237A848200108538 /* Assets.xcassets */; };
 		8C6086BB237A848200108538 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6086B9237A848200108538 /* LaunchScreen.storyboard */; };
+		8C6086C3237A84A800108538 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8C6086C2237A84A800108538 /* Shaders.metal */; };
+		8C6086C7237A89B600108538 /* MetalAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6086C6237A89B600108538 /* MetalAdder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8C6086B7237A848200108538 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C6086BA237A848200108538 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C6086BC237A848200108538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C6086C2237A84A800108538 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		8C6086C6237A89B600108538 /* MetalAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalAdder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 		8C6086AF237A848000108538 /* PerfCalc */ = {
 			isa = PBXGroup;
 			children = (
+				8C6086C2237A84A800108538 /* Shaders.metal */,
+				8C6086C6237A89B600108538 /* MetalAdder.swift */,
 				8C6086B0237A848000108538 /* AppDelegate.swift */,
 				8C6086B2237A848000108538 /* ViewController.swift */,
 				8C6086B4237A848000108538 /* Main.storyboard */,
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6086C3237A84A800108538 /* Shaders.metal in Sources */,
 				8C6086B3237A848000108538 /* ViewController.swift in Sources */,
+				8C6086C7237A89B600108538 /* MetalAdder.swift in Sources */,
 				8C6086B1237A848000108538 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
