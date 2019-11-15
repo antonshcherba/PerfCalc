@@ -13,6 +13,13 @@ class MetalAdder {
     let mDevice: MTLDevice
     var mAddFunctionPSO: MTLComputePipelineState
     
+    var mBufferA: MTLBuffer!
+    var mBufferB: MTLBuffer!
+    var mBufferResult: MTLBuffer!
+    
+    let arrayLength = 1 << 24
+    lazy var bufferSize = arrayLength * MemoryLayout.size(ofValue: Float.self)
+    
     init(with device: MTLDevice) {
         guard let library = device.makeDefaultLibrary() else {
             fatalError("failed default library")
@@ -34,5 +41,20 @@ class MetalAdder {
         }
         
         
+    }
+    
+    func prepareData() {
+        mBufferA = mDevice.makeBuffer(length: bufferSize, options: MTLResourceOptions.storageModeShared)
+        mBufferB = mDevice.makeBuffer(length: bufferSize, options: MTLResourceOptions.storageModeShared)
+        mBufferResult = mDevice.makeBuffer(length: bufferSize, options: MTLResourceOptions.storageModeShared)
+
+        
+    }
+    
+    func generateRandomData(buffer: MTLBuffer) {
+        let ptr: UnsafeMutablePointer<Float> = buffer.contents()
+        for index in 0..<arrayLength {
+            ptr[index] = 0
+        }
     }
 }
