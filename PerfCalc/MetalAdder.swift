@@ -12,6 +12,7 @@ import Metal
 class MetalAdder {
     let mDevice: MTLDevice
     var mAddFunctionPSO: MTLComputePipelineState
+    var mCommandQueue: MTLCommandQueue
     
     var mBufferA: MTLBuffer!
     var mBufferB: MTLBuffer!
@@ -40,7 +41,7 @@ class MetalAdder {
             fatalError("failed create command queue")
         }
         
-        
+        mCommandQueue = queue
     }
     
     func prepareData() {
@@ -48,13 +49,51 @@ class MetalAdder {
         mBufferB = mDevice.makeBuffer(length: bufferSize, options: MTLResourceOptions.storageModeShared)
         mBufferResult = mDevice.makeBuffer(length: bufferSize, options: MTLResourceOptions.storageModeShared)
 
-        
+        generateRandomData1(buffer: mBufferA)
+        generateRandomData2(buffer: mBufferB)
     }
     
-    func generateRandomData(buffer: MTLBuffer) {
-        let ptr: UnsafeMutablePointer<Float> = buffer.contents()
+    func generateRandomData1(buffer: MTLBuffer) {
+        let ptr = buffer.contents().assumingMemoryBound(to: Float.self)
         for index in 0..<arrayLength {
-            ptr[index] = 0
+            ptr[index] = 2
         }
+    }
+    
+    func generateRandomData2(buffer: MTLBuffer) {
+        let ptr = buffer.contents().assumingMemoryBound(to: Float.self)
+        for index in 0..<arrayLength {
+            ptr[index] = 2
+        }
+    }
+    
+    func sendComputeCommand() {
+        let commandBuffer = mCommandQueue.makeCommandBuffer()
+        
+        let computeEncoder = commandBuffer?.makeComputeCommandEncoder()
+        computeEncoder.map(encodeAddCommand)
+        
+        commandBuffer?.commit()
+        
+        commandBuffer?.waitUntilCompleted()
+    }
+    
+    func encodeAddCommand(computeEncoder: MTLComputeCommandEncoder) {
+        computeEncoder.setComputePipelineState(mAddFunctionPSO)
+        computeEncoder.setBuffer(mBufferA, offset: 0, index: 0)
+        computeEncoder.setBuffer(mBufferB, offset: 0, index: 1)
+        computeEncoder.setBuffer(mBufferResult, offset: 0, index: 2)
+        
+        let gridSize = MTLSize.init(width: arrayLength, height: 1, depth: 1)
+        
+        var threadGroupSize1 = mAddFunctionPSO.threadExecutionWidth
+        if threadGroupSize1 > arrayLength {
+            threadGroupSize1 = arrayLength
+        }
+        
+        let threadGroupSize = MTLSize.init(width: threadGroupSize1, height: 1, depth: 1)
+        computeEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadGroupSize)
+        
+        computeEncoder.endEncoding()
     }
 }
