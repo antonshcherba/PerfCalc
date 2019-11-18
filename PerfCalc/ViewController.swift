@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let metalAdder = MetalAdder.init(with: device)
+        metalAdder.prepareData()
+        metalAdder.sendComputeCommand()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

@@ -18,8 +18,8 @@ class MetalAdder {
     var mBufferB: MTLBuffer!
     var mBufferResult: MTLBuffer!
     
-    let arrayLength = 1 << 24
-    lazy var bufferSize = arrayLength * MemoryLayout.size(ofValue: Float.self)
+    let arrayLength = 1 << 2
+    lazy var bufferSize = arrayLength * MemoryLayout<Float>.size
     
     init(with device: MTLDevice) {
         guard let library = device.makeDefaultLibrary() else {
@@ -63,7 +63,7 @@ class MetalAdder {
     func generateRandomData2(buffer: MTLBuffer) {
         let ptr = buffer.contents().assumingMemoryBound(to: Float.self)
         for index in 0..<arrayLength {
-            ptr[index] = 2
+            ptr[index] = 5
         }
     }
     
@@ -76,6 +76,10 @@ class MetalAdder {
         commandBuffer?.commit()
         
         commandBuffer?.waitUntilCompleted()
+        
+//        commandBuffer?.addCompletedHandler({ commanBuffer in
+            self.verifyResults()
+//        })
     }
     
     func encodeAddCommand(computeEncoder: MTLComputeCommandEncoder) {
@@ -95,5 +99,12 @@ class MetalAdder {
         computeEncoder.dispatchThreads(gridSize, threadsPerThreadgroup: threadGroupSize)
         
         computeEncoder.endEncoding()
+    }
+    
+    func verifyResults() {
+        let ptr = mBufferResult.contents().assumingMemoryBound(to: Float.self)
+        for index in 0..<arrayLength {
+            print(ptr[index])
+        }
     }
 }
