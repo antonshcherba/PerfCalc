@@ -73,13 +73,11 @@ class MetalAdder {
         let computeEncoder = commandBuffer?.makeComputeCommandEncoder()
         computeEncoder.map(encodeAddCommand)
         
-        commandBuffer?.commit()
-        
-        commandBuffer?.waitUntilCompleted()
-        
-//        commandBuffer?.addCompletedHandler({ commanBuffer in
+        commandBuffer?.addCompletedHandler({ commanBuffer in
             self.verifyResults()
-//        })
+        })
+        
+        commandBuffer?.commit()
     }
     
     func encodeAddCommand(computeEncoder: MTLComputeCommandEncoder) {
