@@ -14,6 +14,7 @@
 		8C6086BB237A848200108538 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6086B9237A848200108538 /* LaunchScreen.storyboard */; };
 		8C6086C3237A84A800108538 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8C6086C2237A84A800108538 /* Shaders.metal */; };
 		8C6086C7237A89B600108538 /* MetalAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6086C6237A89B600108538 /* MetalAdder.swift */; };
+		D2595EF52386D18F00AEA94A /* car.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D2595EF42386D18F00AEA94A /* car.jpg */; };
 		D2F6716823857A98009D1FCB /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6716723857A98009D1FCB /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		8C6086BC237A848200108538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6086C2237A84A800108538 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		8C6086C6237A89B600108538 /* MetalAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalAdder.swift; sourceTree = "<group>"; };
+		D2595EF42386D18F00AEA94A /* car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = car.jpg; sourceTree = "<group>"; };
 		D2F6716723857A98009D1FCB /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 		8C6086AF237A848000108538 /* PerfCalc */ = {
 			isa = PBXGroup;
 			children = (
+				D2595EF42386D18F00AEA94A /* car.jpg */,
 				D2F6716723857A98009D1FCB /* Renderer.swift */,
 				8C6086C2237A84A800108538 /* Shaders.metal */,
 				8C6086C6237A89B600108538 /* MetalAdder.swift */,
@@ -131,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2595EF52386D18F00AEA94A /* car.jpg in Resources */,
 				8C6086BB237A848200108538 /* LaunchScreen.storyboard in Resources */,
 				8C6086B8237A848200108538 /* Assets.xcassets in Resources */,
 				8C6086B6237A848000108538 /* Main.storyboard in Resources */,
@@ -315,6 +319,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MN9V6W9UPZ;
 				INFOPLIST_FILE = PerfCalc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
